@@ -3,7 +3,8 @@ package models;
 public interface ModelInterface {
 
     // Common
-    void generateInterestMatrix();
+    void loadInput();
+    void loadProbabilities(double[] array);
 
     // Uncertainty theory
     int laplaceCriteriaPredict();
