@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import java.awt.*;
 import javax.swing.*;
@@ -128,13 +128,6 @@ public class Case_1 extends JFrame {
 		gbc_btnExit.gridx = 0;
 		gbc_btnExit.gridy = 0;
 		panel.add(btnExit, gbc_btnExit);
-	}
-	
-	public void showCase1Window() {
-		this.setVisible(true);
-	}
-	public void hideCase1Window() {
-		this.setVisible(false);
 	}
 
 }

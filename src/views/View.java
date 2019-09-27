@@ -1,4 +1,4 @@
-package view;
+package views;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,6 +9,10 @@ import javax.swing.*;
 public class View extends JFrame {
 
 	private String name = "Bài toán DSS sử dụng xác suất";
+	
+	private Case_1 frame_1 = new Case_1();
+	private Case_2 frame_2 = new Case_2();
+	private Case_3 frame_3 = new Case_3();
 
 	JMenuBar menuBar;
 	public JMenu mnFile;
@@ -224,6 +228,33 @@ public class View extends JFrame {
 		btnCase_3.addActionListener(e);
 		
 		btnExit.addActionListener(e);
+	}
+	
+	public void hideAllCaseWindow() {
+		frame_1.setVisible(false);
+		frame_2.setVisible(false);
+		frame_3.setVisible(false);
+	}
+	public void showCase1Window() {
+		hideAllCaseWindow();
+		frame_1.setVisible(true);
+	}
+	public void hideCase1Window() {
+		frame_1.setVisible(false);
+	}
+	public void showCase2Window() {
+		hideAllCaseWindow();
+		frame_2.setVisible(true);
+	}
+	public void hideCase2Window() {
+		frame_2.setVisible(false);
+	}
+	public void showCase3Window() {
+		hideAllCaseWindow();
+		frame_3.setVisible(true);
+	}
+	public void hideCase3Window() {
+		frame_3.setVisible(false);
 	}
 
 	/**
