@@ -69,7 +69,7 @@ public class Model implements ModelInterface {
     }
 
     @Override
-    public void loadProbability(double[] array){
+    public void loadProbabilities(double[] array){
         probabilities = array;
     }
 
@@ -102,7 +102,7 @@ public class Model implements ModelInterface {
 
         for (int i = 0; i < SIZE; i++){
             n = interestMatrix[i][i];
-            for (int j = 0; j < SZIE; j++){
+            for (int j = 0; j < SIZE; j++){
                 matrix[i][j] = interestMatrix[i][j] - n;
             }
         }
@@ -148,7 +148,7 @@ public class Model implements ModelInterface {
 
     @Override
     public int savageCriteriaPredict(){
-        worstCase = new int[SIZE];
+        int[] worstCase = new int[SIZE];
         int maxRegret;
 
         for (int i = 0; i < SIZE; i++){
@@ -161,13 +161,13 @@ public class Model implements ModelInterface {
             worstCase[i] = maxRegret;
         }
 
-        bestOutcome = getMinValueIndexInIntegerArray(worstCase);
+        int bestOutcome = getMinValueIndexInIntegerArray(worstCase);
         return bestOutcome;   
     }
 
     @Override
     public int minimumRankPredict(){
-        int min, max, rank;
+        int min, max, rank, val;
         int[] rankArray = new int[SIZE];
 
         for (int i = 0; i < SIZE; i++){
@@ -194,7 +194,7 @@ public class Model implements ModelInterface {
     // Risk management
     @Override
     public int nearFutureRiskPredict(){
-        int highestProbability = getMaxValueIndexInDoubleArray(array);
+        int highestProbability = getMaxValueIndexInDoubleArray(probabilities);
         return highestProbability;
     }
 
@@ -288,7 +288,7 @@ public class Model implements ModelInterface {
     }
 
     private int getMinValueIndexInIntegerArray(int[] array){
-        minVal = array[0];
+        int minVal = array[0];
         int index = 0;
 
         for (int i = 1; i < array.length; i++){
