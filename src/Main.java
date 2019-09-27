@@ -12,6 +12,9 @@ public class Main {
         testModel.printInterestMatrix();
 
         double[] probabilities = {0.1, 0.3, 0.2, 0.4};
-        testModel.loadProbability(probabilities);
+        testModel.loadProbabilities(probabilities);
+
+        int choice = testModel.bestChoiceInBadCasesPredict();
+        System.out.println(Model.N_PRODUCT[choice]);
     }
 }
