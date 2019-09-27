@@ -1,6 +1,8 @@
 package views;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class Case_1 extends JFrame {
@@ -128,6 +130,15 @@ public class Case_1 extends JFrame {
 		gbc_btnExit.gridx = 0;
 		gbc_btnExit.gridy = 0;
 		panel.add(btnExit, gbc_btnExit);
+	}
+	
+	public void addListenerCase1(ActionListener e) {		
+		btnCase1_solution1.addActionListener(e);
+		btnCase1_solution2.addActionListener(e);
+		btnCase1_solution3.addActionListener(e);
+		btnCase1_solution4.addActionListener(e);
+		
+		btnExit.addActionListener(e);
 	}
 
 }

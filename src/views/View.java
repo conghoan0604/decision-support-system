@@ -9,10 +9,12 @@ import javax.swing.*;
 public class View extends JFrame {
 
 	private String name = "Bài toán DSS sử dụng xác suất";
-	
+
 	private Case_1 frame_1 = new Case_1();
 	private Case_2 frame_2 = new Case_2();
 	private Case_3 frame_3 = new Case_3();
+	private GroupInfoPanel info_frame = new GroupInfoPanel();
+	private ResultPanel result_frame = new ResultPanel();
 
 	JMenuBar menuBar;
 	public JMenu mnFile;
@@ -30,8 +32,8 @@ public class View extends JFrame {
 	private JPanel label, text;
 	private JLabel lblGiMua, lblGiBn, lblMtMtKhch;
 	private JTextField txtGiMua, txtGiBn, txtMtMtKhch;
-	private JButton btnExit;
-	private JLabel lblEmpty;
+	private JPanel panel;
+	private JButton btnExit, btnSubmit;
 
 	private KeyAdapter numberInput = new KeyAdapter() {
 		public void keyTyped(KeyEvent e) {
@@ -85,9 +87,7 @@ public class View extends JFrame {
 		main = new JPanel();
 		GridBagLayout gbl_main = new GridBagLayout();
 		gbl_main.columnWidths = new int[] { 0, 0, 0 };
-		gbl_main.rowHeights = new int[] { 0, 0, 0, 0, 0 };
 		gbl_main.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		gbl_main.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		main.setLayout(gbl_main);
 		// -----------------------------------------------------
 		label_margin_1 = new JLabel(">");
@@ -152,10 +152,7 @@ public class View extends JFrame {
 		footer = new JPanel();
 		getContentPane().add(footer, BorderLayout.SOUTH);
 		GridBagLayout gbl_footer = new GridBagLayout();
-		gbl_footer.columnWidths = new int[] { 0, 0 };
-		gbl_footer.rowHeights = new int[] { 0, 0, 0 };
 		gbl_footer.columnWeights = new double[] { 1.0, 1.0 };
-		gbl_footer.rowWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
 		footer.setLayout(gbl_footer);
 
 		form = new JPanel();
@@ -194,67 +191,99 @@ public class View extends JFrame {
 		txtMtMtKhch.addKeyListener(numberInput);
 		text.add(txtMtMtKhch);
 
+		panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.anchor = GridBagConstraints.EAST;
+		gbc_panel.insets = new Insets(0, 0, 0, 5);
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 0;
+		footer.add(panel, gbc_panel);
+
+		GridBagLayout gbl_panel = new GridBagLayout();
+		panel.setLayout(gbl_panel);
+
+		btnSubmit = new JButton("Submit");
+		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
+		gbc_btnSubmit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnSubmit.anchor = GridBagConstraints.SOUTH;
+		gbc_btnSubmit.insets = new Insets(0, 0, 5, 0);
+		gbc_btnSubmit.gridx = 0;
+		gbc_btnSubmit.gridy = 0;
+		panel.add(btnSubmit, gbc_btnSubmit);
+
 		btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
-		gbc_btnExit.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_btnExit.insets = new Insets(0, 0, 5, 0);
-		gbc_btnExit.gridx = 1;
-		gbc_btnExit.gridy = 0;
-		footer.add(btnExit, gbc_btnExit);
+		gbc_btnExit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnExit.anchor = GridBagConstraints.SOUTH;
+		gbc_btnExit.gridx = 0;
+		gbc_btnExit.gridy = 1;
+		panel.add(btnExit, gbc_btnExit);
 
-		lblEmpty = new JLabel("");
-		GridBagConstraints gbc_lblEmpty = new GridBagConstraints();
-		gbc_lblEmpty.insets = new Insets(0, 0, 0, 5);
-		gbc_lblEmpty.gridx = 2;
-		gbc_lblEmpty.gridy = 0;
-		footer.add(lblEmpty, gbc_lblEmpty);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public int getOriginalPrice() {
 		return Integer.parseInt(txtGiMua.getText());
 	}
+
 	public int getSellPrice() {
 		return Integer.parseInt(txtGiBn.getText());
 	}
+
 	public int getLossPrice() {
 		return Integer.parseInt(txtMtMtKhch.getText());
 	}
-	
-	public void addListenerMainApp(ActionListener e) {
-		btnThngTinNhm.addActionListener(e);
-		
-		btnCase_1.addActionListener(e);
-		btnCase_2.addActionListener(e);
-		btnCase_3.addActionListener(e);
-		
-		btnExit.addActionListener(e);
+
+	public void showInfoGroupWindow() {
+		info_frame.setVisible(true);
 	}
-	
+
+	public void hideInfoGroupWindow() {
+		info_frame.setVisible(false);
+	}
+
 	public void hideAllCaseWindow() {
 		frame_1.setVisible(false);
 		frame_2.setVisible(false);
 		frame_3.setVisible(false);
 	}
+
 	public void showCase1Window() {
 		hideAllCaseWindow();
 		frame_1.setVisible(true);
 	}
+
 	public void hideCase1Window() {
 		frame_1.setVisible(false);
 	}
+
 	public void showCase2Window() {
 		hideAllCaseWindow();
 		frame_2.setVisible(true);
 	}
+
 	public void hideCase2Window() {
 		frame_2.setVisible(false);
 	}
+
 	public void showCase3Window() {
 		hideAllCaseWindow();
 		frame_3.setVisible(true);
 	}
+
 	public void hideCase3Window() {
 		frame_3.setVisible(false);
+	}
+
+	public void addListenerMainApp(ActionListener e) {
+		btnThngTinNhm.addActionListener(e);
+
+		btnCase_1.addActionListener(e);
+		btnCase_2.addActionListener(e);
+		btnCase_3.addActionListener(e);
+
+		btnExit.addActionListener(e);
 	}
 
 	/**

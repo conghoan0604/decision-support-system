@@ -1,6 +1,8 @@
 package views;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class Case_3 extends JFrame {
@@ -11,7 +13,7 @@ public class Case_3 extends JFrame {
 
 	private JPanel main;
 	private JLabel label_margin_1;
-	private JButton btnCase_1;
+	private JButton btnCase3_solution1;
 	private JPanel panel;
 	private JButton btnExit;
 
@@ -58,13 +60,13 @@ public class Case_3 extends JFrame {
 		gbc_label_margin_1.gridx = 0;
 		gbc_label_margin_1.gridy = 0;
 		main.add(label_margin_1, gbc_label_margin_1);
-		btnCase_1 = new JButton("Giá trị kỳ vọng khi có đủ thông tin");
-		GridBagConstraints gbc_btnThngTinNhm = new GridBagConstraints();
-		gbc_btnThngTinNhm.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnThngTinNhm.insets = new Insets(0, 0, 5, 5);
-		gbc_btnThngTinNhm.gridx = 1;
-		gbc_btnThngTinNhm.gridy = 0;
-		main.add(btnCase_1, gbc_btnThngTinNhm);
+		btnCase3_solution1 = new JButton("Giá trị kỳ vọng khi có đủ thông tin");
+		GridBagConstraints gbc_btnCase1_solution1 = new GridBagConstraints();
+		gbc_btnCase1_solution1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCase1_solution1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCase1_solution1.gridx = 1;
+		gbc_btnCase1_solution1.gridy = 0;
+		main.add(btnCase3_solution1, gbc_btnCase1_solution1);
 		// -----------------------------------------------------
 		getContentPane().add(main, BorderLayout.CENTER);
 		// End case>
@@ -86,6 +88,12 @@ public class Case_3 extends JFrame {
 		gbc_btnExit.gridx = 0;
 		gbc_btnExit.gridy = 0;
 		panel.add(btnExit, gbc_btnExit);
+	}
+	
+	public void addListenerCase3(ActionListener e) {		
+		btnCase3_solution1.addActionListener(e);
+		
+		btnExit.addActionListener(e);
 	}
 
 }

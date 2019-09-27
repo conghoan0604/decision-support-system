@@ -1,6 +1,8 @@
 package views;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class Case_2 extends JFrame {
@@ -11,7 +13,7 @@ public class Case_2 extends JFrame {
 
 	private JPanel main;
 	private JLabel label_margin_1, label_margin_2, label_margin_3;
-	private JButton btnCase_1, btnCase_2, btnCase_3;
+	private JButton btnCase2_solution1, btnCase2_solution2, btnCase2_solution3;
 	private JPanel panel;
 	private JButton btnExit;
 
@@ -58,13 +60,13 @@ public class Case_2 extends JFrame {
 		gbc_label_margin_1.gridx = 0;
 		gbc_label_margin_1.gridy = 0;
 		main.add(label_margin_1, gbc_label_margin_1);
-		btnCase_1 = new JButton("Giống tương lai nhất");
-		GridBagConstraints gbc_btnThngTinNhm = new GridBagConstraints();
-		gbc_btnThngTinNhm.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnThngTinNhm.insets = new Insets(0, 0, 5, 5);
-		gbc_btnThngTinNhm.gridx = 1;
-		gbc_btnThngTinNhm.gridy = 0;
-		main.add(btnCase_1, gbc_btnThngTinNhm);
+		btnCase2_solution1 = new JButton("Giống tương lai nhất");
+		GridBagConstraints gbc_btnCase2_solution1 = new GridBagConstraints();
+		gbc_btnCase2_solution1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCase2_solution1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCase2_solution1.gridx = 1;
+		gbc_btnCase2_solution1.gridy = 0;
+		main.add(btnCase2_solution1, gbc_btnCase2_solution1);
 		// -----------------------------------------------------
 		label_margin_2 = new JLabel(">");
 		GridBagConstraints gbc_label_margin_2 = new GridBagConstraints();
@@ -72,13 +74,13 @@ public class Case_2 extends JFrame {
 		gbc_label_margin_2.gridx = 0;
 		gbc_label_margin_2.gridy = 1;
 		main.add(label_margin_2, gbc_label_margin_2);
-		btnCase_2 = new JButton("Đầu ra kỳ vọng");
-		GridBagConstraints gbc_btnCase_1 = new GridBagConstraints();
-		gbc_btnCase_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCase_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCase_1.gridx = 1;
-		gbc_btnCase_1.gridy = 1;
-		main.add(btnCase_2, gbc_btnCase_1);
+		btnCase2_solution2 = new JButton("Đầu ra kỳ vọng");
+		GridBagConstraints gbc_btnCase2_solution2 = new GridBagConstraints();
+		gbc_btnCase2_solution2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCase2_solution2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCase2_solution2.gridx = 1;
+		gbc_btnCase2_solution2.gridy = 1;
+		main.add(btnCase2_solution2, gbc_btnCase2_solution2);
 		// -----------------------------------------------------
 		label_margin_3 = new JLabel(">");
 		GridBagConstraints gbc_label_margin_3 = new GridBagConstraints();
@@ -86,13 +88,13 @@ public class Case_2 extends JFrame {
 		gbc_label_margin_3.gridx = 0;
 		gbc_label_margin_3.gridy = 2;
 		main.add(label_margin_3, gbc_label_margin_3);
-		btnCase_3 = new JButton("Cây quyết định");
-		GridBagConstraints gbc_btnCase_2 = new GridBagConstraints();
-		gbc_btnCase_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCase_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCase_2.gridx = 1;
-		gbc_btnCase_2.gridy = 2;
-		main.add(btnCase_3, gbc_btnCase_2);
+		btnCase2_solution3 = new JButton("Cây quyết định");
+		GridBagConstraints gbc_btnCase2_solution3 = new GridBagConstraints();
+		gbc_btnCase2_solution3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCase2_solution3.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCase2_solution3.gridx = 1;
+		gbc_btnCase2_solution3.gridy = 2;
+		main.add(btnCase2_solution3, gbc_btnCase2_solution3);
 		// -----------------------------------------------------
 		getContentPane().add(main, BorderLayout.CENTER);
 		// End case>
@@ -114,6 +116,14 @@ public class Case_2 extends JFrame {
 		gbc_btnExit.gridx = 0;
 		gbc_btnExit.gridy = 0;
 		panel.add(btnExit, gbc_btnExit);
+	}
+	
+	public void addListenerCase2(ActionListener e) {		
+		btnCase2_solution1.addActionListener(e);
+		btnCase2_solution2.addActionListener(e);
+		btnCase2_solution3.addActionListener(e);
+		
+		btnExit.addActionListener(e);
 	}
 
 }
