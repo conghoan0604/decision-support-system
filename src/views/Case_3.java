@@ -90,10 +90,10 @@ public class Case_3 extends JFrame {
 		panel.add(btnExit, gbc_btnExit);
 	}
 	
-	public void addListenerCase3(ActionListener e) {		
-		btnCase3_solution1.addActionListener(e);
+	public void addListenerCase3(ActionListener solution1Btn, ActionListener exitBtn) {		
+		btnCase3_solution1.addActionListener(solution1Btn);
 		
-		btnExit.addActionListener(e);
+		btnExit.addActionListener(exitBtn);
 	}
 
 }

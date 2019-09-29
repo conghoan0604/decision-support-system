@@ -118,12 +118,12 @@ public class Case_2 extends JFrame {
 		panel.add(btnExit, gbc_btnExit);
 	}
 	
-	public void addListenerCase2(ActionListener e) {		
-		btnCase2_solution1.addActionListener(e);
-		btnCase2_solution2.addActionListener(e);
-		btnCase2_solution3.addActionListener(e);
+	public void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener exitBtn) {		
+		btnCase2_solution1.addActionListener(solution1Btn);
+		btnCase2_solution2.addActionListener(solution2Btn);
+		btnCase2_solution3.addActionListener(solution3Btn);
 		
-		btnExit.addActionListener(e);
+		btnExit.addActionListener(exitBtn);
 	}
 
 }

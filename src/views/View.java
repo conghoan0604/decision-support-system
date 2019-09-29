@@ -16,11 +16,6 @@ public class View extends JFrame {
 	private GroupInfoPanel info_frame = new GroupInfoPanel();
 	private ResultPanel result_frame = new ResultPanel();
 
-	JMenuBar menuBar;
-	public JMenu mnFile;
-	public JMenuItem mnfNew, mnfLoad, mnfSave, mnfExit;
-	JPopupMenu.Separator line1, line2;
-
 	private JPanel null_panel;
 
 	private JPanel main;
@@ -55,33 +50,8 @@ public class View extends JFrame {
 		this.setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
 
-		// <MenuBar
-		menuBar = new JMenuBar();
-		// -----------------------------------------------------
-		mnFile = new JMenu("File");
-
-		mnfNew = new JMenuItem("New");
-		line1 = new JPopupMenu.Separator();
-		mnfLoad = new JMenuItem("Load...");
-		mnfSave = new JMenuItem("Save");
-		mnfSave.setEnabled(false);
-		line2 = new JPopupMenu.Separator();
-		mnfExit = new JMenuItem("Exit");
-
-		mnFile.add(mnfNew);
-		mnFile.add(line1);
-		mnFile.add(mnfLoad);
-		mnFile.add(mnfSave);
-		mnFile.add(line2);
-		mnFile.add(mnfExit);
-
-		menuBar.add(mnFile);
-
 		null_panel = new JPanel();
-		// -----------------------------------------------------
-		// getContentPane().add(menuBar, BorderLayout.PAGE_START);
 		getContentPane().add(null_panel, BorderLayout.NORTH);
-		// End MenuBar>
 
 		// <Case
 		main = new JPanel();
@@ -226,11 +196,9 @@ public class View extends JFrame {
 	public int getOriginalPrice() {
 		return Integer.parseInt(txtGiMua.getText());
 	}
-
 	public int getSellPrice() {
 		return Integer.parseInt(txtGiBn.getText());
 	}
-
 	public int getLossPrice() {
 		return Integer.parseInt(txtMtMtKhch.getText());
 	}
@@ -238,7 +206,6 @@ public class View extends JFrame {
 	public void showInfoGroupWindow() {
 		info_frame.setVisible(true);
 	}
-
 	public void hideInfoGroupWindow() {
 		info_frame.setVisible(false);
 	}
@@ -248,42 +215,91 @@ public class View extends JFrame {
 		frame_2.setVisible(false);
 		frame_3.setVisible(false);
 	}
-
-	public void showCase1Window() {
-		hideAllCaseWindow();
+	
+	public void showCase1Window(boolean unique) {
+		if (unique) {
+			hideAllCaseWindow();
+		}
 		frame_1.setVisible(true);
 	}
-
 	public void hideCase1Window() {
 		frame_1.setVisible(false);
 	}
 
-	public void showCase2Window() {
-		hideAllCaseWindow();
+	public void showCase2Window(boolean unique) {
+		if (unique) {
+			hideAllCaseWindow();
+		}
 		frame_2.setVisible(true);
 	}
-
 	public void hideCase2Window() {
 		frame_2.setVisible(false);
 	}
 
-	public void showCase3Window() {
-		hideAllCaseWindow();
+	public void showCase3Window(boolean unique) {
+		if (unique) {
+			hideAllCaseWindow();
+		}
 		frame_3.setVisible(true);
 	}
-
 	public void hideCase3Window() {
 		frame_3.setVisible(false);
 	}
+	
+	public void setResult(int caseNum, int solutionNum, int result) {
+		result_frame.setResult(caseNum, solutionNum, result);
+	}
+	public void showResultWindow() {
+		result_frame.setVisible(true);
+	}
+	public void closeResultWindow() {
+		result_frame.cleanResult();
+		result_frame.setVisible(false);
+	}
+	
+	public void setEnableCaseBtn(int caseNum, boolean status) {
+		switch (caseNum) {
+		case 1:
+			btnCase_1.setEnabled(status);
+			break;
+		case 2:
+			btnCase_2.setEnabled(status);
+			break;
+		case 3:
+			btnCase_3.setEnabled(status);
+			break;
+		default:
+			btnCase_1.setEnabled(status);
+			btnCase_2.setEnabled(status);
+			btnCase_3.setEnabled(status);
+			break;
+		}
+	}
 
-	public void addListenerMainApp(ActionListener e) {
-		btnThngTinNhm.addActionListener(e);
+	public void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener exitBtn) {
+		btnThngTinNhm.addActionListener(groupInfoBtn);
 
-		btnCase_1.addActionListener(e);
-		btnCase_2.addActionListener(e);
-		btnCase_3.addActionListener(e);
+		btnCase_1.addActionListener(case1Btn);
+		btnCase_2.addActionListener(case2Btn);
+		btnCase_3.addActionListener(case3Btn);
 
-		btnExit.addActionListener(e);
+		btnExit.addActionListener(exitBtn);
+	}
+	
+	public void addListenerGroupInfoPanel(ActionListener exitBtn) {
+		info_frame.addListenerInfo(exitBtn);
+	}
+	
+	public void addListenerCase1(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener solution4Btn, ActionListener exitBtn) {
+		frame_1.addListenerCase1(solution1Btn, solution2Btn, solution3Btn, solution4Btn, exitBtn);
+	}
+	
+	public void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener exitBtn) {
+		frame_2.addListenerCase2(solution1Btn, solution2Btn, solution3Btn, exitBtn);
+	}
+	
+	public void addListenerCase3(ActionListener solution1Btn, ActionListener exitBtn) {
+		frame_3.addListenerCase3(solution1Btn, exitBtn);
 	}
 
 	/**

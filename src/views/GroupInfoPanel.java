@@ -118,8 +118,8 @@ public class GroupInfoPanel extends JFrame {
 		footer.add(btnExit, BorderLayout.EAST);
 	}
 	
-	public void addListenerInfo(ActionListener e) {
-		btnExit.addActionListener(e);
+	public void addListenerInfo(ActionListener exitBtn) {
+		btnExit.addActionListener(exitBtn);
 	}
 
 }
