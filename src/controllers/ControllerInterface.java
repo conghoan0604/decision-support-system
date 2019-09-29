@@ -7,7 +7,15 @@ public interface ControllerInterface {
     int getModelLossPrice();
 
     // Set data to model
-    void setModelOriginalPrice(int number);
-    void setModelSellPrice(int number);
-    void setModelLossPrice(int number);
+    void setModelOriginalPrice();
+    void setModelSellPrice();
+    void setModelLossPrice();
+
+    // Get data from view
+    int getViewOriginalPrice();
+    int getViewSellPrice();
+    int getViewLossPrice();
+
+    // Set data to view
+    void setViewResult();
 }
