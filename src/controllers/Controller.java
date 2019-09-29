@@ -31,17 +31,31 @@ public class Controller {
         return model.getLossPrice();
     }
 
-    public void setModelOriginalPrice(int number) {
-        model.setOriginalPrice(number);
+    public void setModelOriginalPrice() {
+        model.setOriginalPrice(view.getOriginalPrice());
     }
 
-    public void setModelSellPrice(int number) {
-        model.setSellPrice(number);
+    public void setModelSellPrice() {
+        model.setSellPrice(view.getSellPrice());
     }
 
-    public void setModelLossPrice(int number) {
-        model.setLossPrice(number);
+    public void setModelLossPrice() {
+        model.setLossPrice(view.getLossPrice());
     }
+
+    public int getViewOriginalPrice() {
+        return view.getOriginalPrice();
+    }
+
+    public int getViewSellPrice() {
+        return view.getSellPrice();
+    }
+
+    public int getViewLossPrice() {
+        return view.getLossPrice();
+    }
+
+
 
 //    public void initView() {
 //
