@@ -21,6 +21,11 @@ public interface ViewInterface {
 	int getOriginalPrice();
 	int getSellPrice();
 	int getLossPrice();
+	int getProbability1();
+	int getProbability2();
+	int getProbability3();
+	int getProbability4();
+
 	
 	// Set result
 	void setResult(int caseNum, int solutionNum, int result);
