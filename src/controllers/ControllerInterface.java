@@ -15,6 +15,11 @@ public interface ControllerInterface {
     int getViewOriginalPrice();
     int getViewSellPrice();
     int getViewLossPrice();
+    int getViewProbability1();
+    int getViewProbability2();
+    int getViewProbability3();
+    int getViewProbability4();
+
 
     // Set data to view
     void setViewResult();
