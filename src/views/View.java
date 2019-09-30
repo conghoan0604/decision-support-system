@@ -51,7 +51,7 @@ public class View extends JFrame {
 			char c = e.getKeyChar();
 			String textField = ((JTextField) e.getSource()).getText();
 			if (textField.length() > 0) {
-				if (!(((c >= '0') && (c <= '9')) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == '.'))) {
+				if (!(((c >= '0') && (c <= '9')) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == '.')) || (textField.matches("^[1]"))) {
 					// getToolkit().beep();
 					e.consume();
 				} else {
@@ -59,10 +59,15 @@ public class View extends JFrame {
 						if (textField.contains(".")) {
 							e.consume();
 						}
-					} else {
+					} else if (!((c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
 						if (!textField.contains(".")) {
-							((JTextField) e.getSource()).setText(textField.replaceAll("^[0]+", ""));
+							textField = textField.replaceAll("^[0]+", "") + c;
+							textField = textField.replaceAll("^[1-9]+", "1");
+						} else {
+							textField += c;
 						}
+						((JTextField) e.getSource()).setText(textField);
+						e.consume();
 					}
 				}
 			}
