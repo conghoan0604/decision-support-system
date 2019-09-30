@@ -21,11 +21,7 @@ public interface ViewInterface {
 	int getOriginalPrice();
 	int getSellPrice();
 	int getLossPrice();
-	int getProbability1();
-	int getProbability2();
-	int getProbability3();
-	int getProbability4();
-
+	double[] getProbability();
 	
 	// Set result
 	void setResult(int caseNum, int solutionNum, int result);
@@ -38,7 +34,7 @@ public interface ViewInterface {
 	void setEnableCaseBtn(int caseNum, boolean status);
 	
 	// Add Action to main view
-	void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener exitBtn);
+	void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener submitBtn, ActionListener exitBtn);
 	// Add Action to info group window
 	void addListenerGroupInfoPanel(ActionListener exitBtn);
 	// Add Action to case window

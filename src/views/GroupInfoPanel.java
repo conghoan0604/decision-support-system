@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class GroupInfoPanel extends JFrame {
+public class GroupInfoPanel extends JDialog {
 
 	private String name = "Thông tin nhóm";
 

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
 public class View extends JFrame {
@@ -33,19 +34,53 @@ public class View extends JFrame {
 	private KeyAdapter numberInput = new KeyAdapter() {
 		public void keyTyped(KeyEvent e) {
 			char c = e.getKeyChar();
+			String textField = ((JTextField) e.getSource()).getText();
 			if (!(((c >= '0') && (c <= '9')) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE))) {
-				getToolkit().beep();
+				// getToolkit().beep();
 				e.consume();
+			}
+			if (textField.length() == 0) {
+				((JTextField) e.getSource()).setText("0");
+			} else {
+				((JTextField) e.getSource()).setText(textField.replaceAll("^[0]+", ""));
 			}
 		}
 	};
+	private KeyAdapter doubleInput = new KeyAdapter() {
+		public void keyTyped(KeyEvent e) {
+			char c = e.getKeyChar();
+			String textField = ((JTextField) e.getSource()).getText();
+			if (textField.length() > 0) {
+				if (!(((c >= '0') && (c <= '9')) || (c == KeyEvent.VK_BACK_SPACE) || (c == KeyEvent.VK_DELETE) || (c == '.'))) {
+					// getToolkit().beep();
+					e.consume();
+				} else {
+					if (c == '.') {
+						if (textField.contains(".")) {
+							e.consume();
+						}
+					} else {
+						if (!textField.contains(".")) {
+							((JTextField) e.getSource()).setText(textField.replaceAll("^[0]+", ""));
+						}
+					}
+				}
+			}
+			if (((JTextField) e.getSource()).getText().length() == 0) {
+				((JTextField) e.getSource()).setText("0");
+			}
+		}
+	};
+	
+	private JPanel optional;
+	private JTextField textProbability1, textProbability2, textProbability3, textProbability4;
 
 	/**
 	 * Create the frame.
 	 */
 	public View() {
 		this.setTitle(name);
-		this.setSize(500, 260);
+		this.setSize(500, 300);
 		this.setLocationRelativeTo(null); // can giua man hinh
 		this.setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
@@ -120,16 +155,18 @@ public class View extends JFrame {
 		// End case>
 
 		footer = new JPanel();
+		footer.setBorder(new EmptyBorder(0, 0, 10, 0));
 		getContentPane().add(footer, BorderLayout.SOUTH);
 		GridBagLayout gbl_footer = new GridBagLayout();
+		gbl_footer.columnWidths = new int[]{373, 0};
 		gbl_footer.columnWeights = new double[] { 1.0, 1.0 };
 		footer.setLayout(gbl_footer);
 
 		form = new JPanel();
 		form.setBorder(BorderFactory.createTitledBorder("Dữ liệu bài toán"));
-		form.setLayout(new BorderLayout(5, 0));
+		form.setLayout(new BorderLayout(5, 10));
 		GridBagConstraints gbc_form = new GridBagConstraints();
-		gbc_form.insets = new Insets(0, 0, 5, 5);
+		gbc_form.insets = new Insets(0, 0, -5, 5);
 		gbc_form.fill = GridBagConstraints.BOTH;
 		gbc_form.gridx = 0;
 		gbc_form.gridy = 0;
@@ -149,27 +186,60 @@ public class View extends JFrame {
 		form.add(text, BorderLayout.CENTER);
 		text.setLayout(new GridLayout(3, 1));
 		txtGiMua = new JTextField();
+		txtGiMua.setText("0");
 		txtGiMua.setColumns(10);
 		txtGiMua.addKeyListener(numberInput);
 		text.add(txtGiMua);
 		txtGiBn = new JTextField();
+		txtGiBn.setText("0");
 		txtGiBn.setColumns(10);
 		txtGiBn.addKeyListener(numberInput);
 		text.add(txtGiBn);
 		txtMtMtKhch = new JTextField();
+		txtMtMtKhch.setText("0");
 		txtMtMtKhch.setColumns(10);
 		txtMtMtKhch.addKeyListener(numberInput);
 		text.add(txtMtMtKhch);
+		
+		optional = new JPanel();
+		optional.setBorder(BorderFactory.createTitledBorder("Dữ liệu thêm"));
+		form.add(optional, BorderLayout.SOUTH);
+		optional.setLayout(new GridLayout(1, 4, 10, 0));
+		
+		textProbability1 = new JTextField();
+		textProbability1.setText("0");
+		optional.add(textProbability1);
+		textProbability1.setColumns(10);
+		textProbability1.addKeyListener(doubleInput);
+		
+		textProbability2 = new JTextField();
+		textProbability2.setText("0");
+		optional.add(textProbability2);
+		textProbability2.setColumns(10);
+		textProbability2.addKeyListener(doubleInput);
+		
+		textProbability3 = new JTextField();
+		textProbability3.setText("0");
+		optional.add(textProbability3);
+		textProbability3.setColumns(10);
+		textProbability3.addKeyListener(doubleInput);
+		
+		textProbability4 = new JTextField();
+		textProbability4.setText("0");
+		optional.add(textProbability4);
+		textProbability4.setColumns(10);
+		textProbability4.addKeyListener(doubleInput);
 
 		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.anchor = GridBagConstraints.EAST;
+		gbc_panel.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
 		gbc_panel.gridx = 1;
 		gbc_panel.gridy = 0;
 		footer.add(panel, gbc_panel);
 
 		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWeights = new double[]{1.0};
 		panel.setLayout(gbl_panel);
 
 		btnSubmit = new JButton("Submit");
@@ -201,6 +271,10 @@ public class View extends JFrame {
 	}
 	public int getLossPrice() {
 		return Integer.parseInt(txtMtMtKhch.getText());
+	}
+	public double[] getProbability() {
+		double[] property = {Double.parseDouble(textProbability1.getText()), Double.parseDouble(textProbability2.getText()), Double.parseDouble(textProbability3.getText()), Double.parseDouble(textProbability4.getText())};
+		return property;
 	}
 
 	public void showInfoGroupWindow() {
@@ -276,12 +350,14 @@ public class View extends JFrame {
 		}
 	}
 
-	public void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener exitBtn) {
+	public void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener submitBtn, ActionListener exitBtn) {
 		btnThngTinNhm.addActionListener(groupInfoBtn);
 
 		btnCase_1.addActionListener(case1Btn);
 		btnCase_2.addActionListener(case2Btn);
 		btnCase_3.addActionListener(case3Btn);
+		
+		btnSubmit.addActionListener(submitBtn);
 
 		btnExit.addActionListener(exitBtn);
 	}

@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Case_2 extends JFrame {
+public class Case_2 extends JDialog {
 
 	private String name = "Ra quyết định với rủi ro";
 
@@ -38,7 +38,7 @@ public class Case_2 extends JFrame {
 	 */
 	public Case_2() {
 		this.setTitle(name);
-		setBounds(100, 100, 368, 135);
+		setBounds(468, 100, 368, 135);
 		this.setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
 
