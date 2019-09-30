@@ -19,9 +19,9 @@ public class Main {
         int choice = testModel.bestChoiceInBadCasesPredict();
         System.out.println(Model.N_PRODUCT[choice]);
 
-//        Model model = new Model();
-//        View view = new View();
-//        Controller controller = new Controller(model, view);
-//        view.setVisible(true);
+        Model model = new Model();
+        View view = new View();
+        Controller controller = new Controller(model, view);
+        view.setVisible(true);
     }
 }
