@@ -100,10 +100,10 @@ public class Model implements ModelInterface {
         int n;
         int[][] matrix = new int[SIZE][SIZE];
 
-        for (int i = 0; i < SIZE; i++){
-            n = interestMatrix[i][i];
-            for (int j = 0; j < SIZE; j++){
-                matrix[i][j] = interestMatrix[i][j] - n;
+        for (int j = 0; j < SIZE; j++){
+            n = interestMatrix[j][j];
+            for (int i = 0; i < SIZE; i++){
+                matrix[i][j] = n - interestMatrix[i][j];
             }
         }
 
@@ -113,13 +113,14 @@ public class Model implements ModelInterface {
     // uncertain
     @Override
     public int laplaceCriteriaPredict(){
-        double probability = 1 / SIZE;
+        double probability = 1.0 / SIZE;
         double[] expect_interest = new double[SIZE];
 
         for (int i = 0; i < SIZE; i++){
             expect_interest[i] = probability * interestMatrix[i][0];
             for (int j = 1; j < SIZE; j++){
-                expect_interest[i] += probability * interestMatrix[i][j]; 
+                expect_interest[i] += (probability * interestMatrix[i][j]); 
+               
             }
         }
 
@@ -161,6 +162,8 @@ public class Model implements ModelInterface {
             worstCase[i] = maxRegret;
         }
 
+     
+
         int bestOutcome = getMinValueIndexInIntegerArray(worstCase);
         return bestOutcome;   
     }
@@ -176,9 +179,10 @@ public class Model implements ModelInterface {
 
             for (int j = 1; j < SIZE; j++){
                 val = interestMatrix[i][j];
-                if (val > max){
+                if (val > max) {
                     max = val;
-                } else {
+                }
+                if (val < min) {
                     min = val;
                 }
             }
