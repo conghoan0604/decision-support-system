@@ -13,7 +13,7 @@ public class ResultPanel extends JDialog {
 	private JLabel lblCasename, lblSolutionname, lblResult;
 	
 	private String[] caseArr = {"Ra quyết định theo không chắc chắn", "Ra quyết định với rủi ro", "Ra quyết định theo chắc chắn"};
-	private String[][] solutionArr = {{"Chỉ tiêu Laplace", "Tốt trong xấu", "Chỉ tiêu Savart", "Hạng cực tiểu"}, {"Giống tương lai nhất", "Đầu ra kỳ vọng", "Cây quyết định"}, {"Giá trị kỳ vọng khi có đủ thông tin"}};
+	private String[][] solutionArr = {{"Chỉ tiêu Laplace", "Tốt trong xấu", "Chỉ tiêu Savart", "Hạng cực tiểu"}, {"Giống tương lai nhất", "Đầu ra kỳ vọng", "Cây quyết định", "Mất kỳ vọng thấp nhất"}, {"Giá trị kỳ vọng khi có đủ thông tin"}};
 	private int[] N_PRODUCT = {11, 12, 13, 14};
 
 	/**

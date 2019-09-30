@@ -39,7 +39,7 @@ public interface ViewInterface {
 	void addListenerGroupInfoPanel(ActionListener exitBtn);
 	// Add Action to case window
 	void addListenerCase1(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener solution4Btn, ActionListener exitBtn);
-	void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener exitBtn);
+	void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener solution4Btn, ActionListener exitBtn);
 	void addListenerCase3(ActionListener solution1Btn, ActionListener exitBtn);
 	
 }
