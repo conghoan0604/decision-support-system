@@ -147,14 +147,14 @@ public class View extends JFrame {
 		gbc_label_margin_4.insets = new Insets(0, 0, 5, 5);
 		gbc_label_margin_4.gridx = 0;
 		gbc_label_margin_4.gridy = 3;
-		main.add(label_margin_4, gbc_label_margin_4);
+		//main.add(label_margin_4, gbc_label_margin_4);
 		btnCase_3 = new JButton("Trường hợp 3");
 		GridBagConstraints gbc_btnCase_3 = new GridBagConstraints();
 		gbc_btnCase_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCase_3.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCase_3.gridx = 1;
 		gbc_btnCase_3.gridy = 3;
-		main.add(btnCase_3, gbc_btnCase_3);
+		//main.add(btnCase_3, gbc_btnCase_3);
 		// -----------------------------------------------------
 		getContentPane().add(main, BorderLayout.CENTER);
 		// End case>
@@ -263,7 +263,8 @@ public class View extends JFrame {
 		gbc_btnExit.gridx = 0;
 		gbc_btnExit.gridy = 1;
 		panel.add(btnExit, gbc_btnExit);
-
+		
+		setEnableCaseBtn(0, false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -375,8 +376,8 @@ public class View extends JFrame {
 		frame_1.addListenerCase1(solution1Btn, solution2Btn, solution3Btn, solution4Btn, exitBtn);
 	}
 	
-	public void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener exitBtn) {
-		frame_2.addListenerCase2(solution1Btn, solution2Btn, solution3Btn, exitBtn);
+	public void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener solution4Btn, ActionListener exitBtn) {
+		frame_2.addListenerCase2(solution1Btn, solution2Btn, solution3Btn, solution4Btn, exitBtn);
 	}
 	
 	public void addListenerCase3(ActionListener solution1Btn, ActionListener exitBtn) {

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class Controller {
     private Model model;
@@ -20,7 +21,7 @@ public class Controller {
         this.view = view;
         this.view.addListenerMainApp(new btnInfoAL(), new btnCase1AL(), new btnCase2AL(), new btnCase3AL(), new btnSubmitAL(), new btnExitAL());
         this.view.addListenerCase1(new btnCase1Solution1AL(), new btnCase1Solution2AL(), new btnCase1Solution3AL(), new btnCase1Solution4AL(), new btnCase1ExitAL());
-        this.view.addListenerCase2(new btnCase2Solution1AL(), new btnCase2Solution2AL(), new btnCase2Solution3AL(), new btnCase2ExitAL());
+        this.view.addListenerCase2(new btnCase2Solution1AL(), new btnCase2Solution2AL(), new btnCase2Solution3AL(), new btnCase2Solution4AL(), new btnCase2ExitAL());
         this.view.addListenerCase3(new btnCase3Solution1AL(), new btnCase3ExitAL());
         this.view.addListenerGroupInfoPanel(new btnInfoExitAL());
     }
@@ -105,11 +106,17 @@ public class Controller {
         public void actionPerformed(ActionEvent e) {
         	view.closeResultWindow();
         	view.hideAllCaseWindow();
-            setModelLossPrice();
-            setModelOriginalPrice();
-            setModelSellPrice();
-            setModelProbabilities();
-            model.loadInput();
+        	try {
+        		setModelLossPrice();
+            	setModelOriginalPrice();
+            	setModelSellPrice();
+            	setModelProbabilities();
+            	model.loadInput();
+            	view.setEnableCaseBtn(0, true);
+        	} catch (Exception er) {
+        		view.setEnableCaseBtn(0, false);
+        		JOptionPane.showMessageDialog(null, er.getMessage(), "Error", 2);
+        	}
         }
     }
     
@@ -179,7 +186,15 @@ public class Controller {
     public class btnCase2Solution3AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.setResult(2, 3, model.minimumExpectedRegretRiskPredict());
+            view.setResult(2, 3, model.maximumExpectedProfitRiskPredict());
+            view.showResultWindow();
+        }
+    }
+    
+    public class btnCase2Solution4AL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.setResult(2, 4, model.minimumExpectedRegretRiskPredict());
             view.showResultWindow();
         }
     }

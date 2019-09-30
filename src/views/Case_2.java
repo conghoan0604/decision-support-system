@@ -12,8 +12,8 @@ public class Case_2 extends JDialog {
 	private JPanel null_panel;
 
 	private JPanel main;
-	private JLabel label_margin_1, label_margin_2, label_margin_3;
-	private JButton btnCase2_solution1, btnCase2_solution2, btnCase2_solution3;
+	private JLabel label_margin_1, label_margin_2, label_margin_3, label_margin_4;
+	private JButton btnCase2_solution1, btnCase2_solution2, btnCase2_solution3, btnCase2_solution4;
 	private JPanel panel;
 	private JButton btnExit;
 
@@ -38,7 +38,7 @@ public class Case_2 extends JDialog {
 	 */
 	public Case_2() {
 		this.setTitle(name);
-		setBounds(468, 100, 368, 135);
+		setBounds(468, 100, 368, 168);
 		this.setResizable(false);
 		getContentPane().setLayout(new BorderLayout());
 
@@ -49,9 +49,9 @@ public class Case_2 extends JDialog {
 		main = new JPanel();
 		GridBagLayout gbl_main = new GridBagLayout();
 		gbl_main.columnWidths = new int[] { 0, 0, 0 };
-		gbl_main.rowHeights = new int[] { 0, 0, 0, 0 };
+		gbl_main.rowHeights = new int[] { 0, 0, 0, 0, 0 };
 		gbl_main.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
-		gbl_main.rowWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_main.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		main.setLayout(gbl_main);
 		// -----------------------------------------------------
 		label_margin_1 = new JLabel(">");
@@ -96,6 +96,20 @@ public class Case_2 extends JDialog {
 		gbc_btnCase2_solution3.gridy = 2;
 		main.add(btnCase2_solution3, gbc_btnCase2_solution3);
 		// -----------------------------------------------------
+		label_margin_4 = new JLabel(">");
+		GridBagConstraints gbc_label_margin_4 = new GridBagConstraints();
+		gbc_label_margin_4.insets = new Insets(0, 0, 5, 5);
+		gbc_label_margin_4.gridx = 0;
+		gbc_label_margin_4.gridy = 3;
+		main.add(label_margin_4, gbc_label_margin_4);
+		btnCase2_solution4 = new JButton("Mất kỳ vọng thấp nhất");
+		GridBagConstraints gbc_btnCase2_solution4 = new GridBagConstraints();
+		gbc_btnCase2_solution4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCase2_solution4.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCase2_solution4.gridx = 1;
+		gbc_btnCase2_solution4.gridy = 3;
+		main.add(btnCase2_solution4, gbc_btnCase2_solution4);
+		// -----------------------------------------------------
 		getContentPane().add(main, BorderLayout.CENTER);
 		// End case>
 
@@ -118,10 +132,11 @@ public class Case_2 extends JDialog {
 		panel.add(btnExit, gbc_btnExit);
 	}
 	
-	public void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener exitBtn) {		
+	public void addListenerCase2(ActionListener solution1Btn, ActionListener solution2Btn, ActionListener solution3Btn, ActionListener solution4Btn, ActionListener exitBtn) {		
 		btnCase2_solution1.addActionListener(solution1Btn);
 		btnCase2_solution2.addActionListener(solution2Btn);
 		btnCase2_solution3.addActionListener(solution3Btn);
+		btnCase2_solution4.addActionListener(solution4Btn);
 		
 		btnExit.addActionListener(exitBtn);
 	}
