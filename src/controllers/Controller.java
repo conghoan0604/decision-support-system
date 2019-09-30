@@ -18,6 +18,11 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
+        this.view.addListenerMainApp(new btnInfoAL(), new btnCase1AL(), new btnCase2AL(), new btnCase3AL(), new btnSubmitAL(), new btnExitAL());
+        this.view.addListenerCase1(new btnCase1Solution1AL(), new btnCase1Solution2AL(), new btnCase1Solution3AL(), new btnCase1Solution4AL(), new btnCase1ExitAL());
+        this.view.addListenerCase2(new btnCase2Solution1AL(), new btnCase2Solution2AL(), new btnCase2Solution3AL(), new btnCase2ExitAL());
+        this.view.addListenerCase3(new btnCase3Solution1AL(), new btnCase3ExitAL());
+        this.view.addListenerGroupInfoPanel(new btnInfoExitAL());
     }
 
     public int getModelOriginalPrice() {
@@ -44,9 +49,9 @@ public class Controller {
         model.setLossPrice(view.getLossPrice());
     }
 
-//    public void setModelProbabilities() {
-//        model.loadProbabilities(new double[]{view.getProbability1(), view.getProbability2(), view.getProbability3(), view.getProbability4()});
-//    }
+    public void setModelProbabilities() {
+        model.loadProbabilities(view.getProbability());
+    }
 
     public int getViewOriginalPrice() {
         return view.getOriginalPrice();
@@ -60,26 +65,17 @@ public class Controller {
         return view.getLossPrice();
     }
 
-//    public int getViewProbability1() {
-//        return view.getProbability1();
-//    }
-//
-//    public int getViewProbability2() {
-//        return view.getProbability2();
-//    }
-//
-//    public int getViewProbability3() {
-//        return view.getProbability3();
-//    }
-//
-//    public int getViewProbability4() {
-//        return view.getProbability4();
-//    }
-
     public class btnInfoAL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             view.showInfoGroupWindow();
+        }
+    }
+    
+    public class btnInfoExitAL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.hideInfoGroupWindow();
         }
     }
 
@@ -107,9 +103,20 @@ public class Controller {
     public class btnSubmitAL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	view.closeResultWindow();
+        	view.hideAllCaseWindow();
             setModelLossPrice();
             setModelOriginalPrice();
             setModelSellPrice();
+            setModelProbabilities();
+            model.loadInput();
+        }
+    }
+    
+    public class btnExitAL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.exit(0);
         }
     }
 
@@ -137,11 +144,19 @@ public class Controller {
         }
     }
 
-    public class btnCase12Solution4AL implements ActionListener {
+    public class btnCase1Solution4AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             view.setResult(1, 4, model.minimumRankPredict());
             view.showResultWindow();
+        }
+    }
+    
+    public class btnCase1ExitAL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.hideCase1Window();
+            view.closeResultWindow();
         }
     }
 
@@ -168,12 +183,28 @@ public class Controller {
             view.showResultWindow();
         }
     }
+    
+    public class btnCase2ExitAL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.hideCase2Window();
+            view.closeResultWindow();
+        }
+    }
 
     public class btnCase3Solution1AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             view.setResult(3, 1, model.maximumExpectedProfitPredict());
             view.showResultWindow();
+        }
+    }
+    
+    public class btnCase3ExitAL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.hideCase3Window();
+            view.closeResultWindow();
         }
     }
 

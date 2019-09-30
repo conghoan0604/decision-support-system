@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class ResultPanel extends JFrame {
+public class ResultPanel extends JDialog {
 	
 	private String name = "Kết quả";
 
