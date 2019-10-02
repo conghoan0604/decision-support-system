@@ -7,18 +7,19 @@ public interface ModelInterface {
     void loadProbabilities(double[] array);
 
     // Uncertainty theory
-    int laplaceCriteriaPredict();
-    int bestChoiceInBadCasesPredict();
-    int savageCriteriaPredict();
-    int minimumRankPredict();
+    int[] laplaceCriteriaPredict();
+    int[] bestChoiceInBadCasesPredict();
+    int[] savageCriteriaPredict();
+    int[] minimumRankPredict();
 
     // Risk management
-    int nearFutureRiskPredict();
-    int maximumExpectedProfitRiskPredict();
-    int minimumExpectedRegretRiskPredict();
+    int[] nearFutureRiskPredict();
+    int[] maximumExpectedProfitRiskPredict();
+    int[] decisionTreePredict();
+    int[] minimumExpectedRegretRiskPredict();
 
     // Certainty theory
-    int maximumExpectedProfitPredict();
+    int[] maximumExpectedProfitPredict();
 
     // Get
     int getOriginalPrice();
