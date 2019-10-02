@@ -1,6 +1,7 @@
 package models;
 
 import java.lang.IllegalArgumentException;
+import java.util.ArrayList;
 
 public class Model implements ModelInterface {
     public static final int MIN_PRODUCT = 11;
@@ -112,7 +113,7 @@ public class Model implements ModelInterface {
 
     // uncertain
     @Override
-    public int laplaceCriteriaPredict(){
+    public int[] laplaceCriteriaPredict(){
         double probability = 1.0 / SIZE;
         double[] expect_interest = new double[SIZE];
 
@@ -124,12 +125,12 @@ public class Model implements ModelInterface {
             }
         }
 
-        int maxExpect = getMaxValueIndexInDoubleArray(expect_interest);
+        int[] maxExpect = getMaxValueIndiceInDoubleArray(expect_interest);
         return maxExpect;
     }
 
     @Override
-    public int bestChoiceInBadCasesPredict(){
+    public int[] bestChoiceInBadCasesPredict(){
         int minInterest;
         int[] worstCases = new int[SIZE];
 
@@ -143,12 +144,12 @@ public class Model implements ModelInterface {
             worstCases[i] = minInterest;
         }
         
-        int bestOutcome = getMaxValueIndexInIntegerArray(worstCases);
+        int[] bestOutcome = getMaxValueIndiceInIntegerArray(worstCases);
         return bestOutcome;
     }
 
     @Override
-    public int savageCriteriaPredict(){
+    public int[] savageCriteriaPredict(){
         int[] worstCase = new int[SIZE];
         int maxRegret;
 
@@ -164,12 +165,12 @@ public class Model implements ModelInterface {
 
      
 
-        int bestOutcome = getMinValueIndexInIntegerArray(worstCase);
+        int[] bestOutcome = getMinValueIndiceInIntegerArray(worstCase);
         return bestOutcome;   
     }
 
     @Override
-    public int minimumRankPredict(){
+    public int[] minimumRankPredict(){
         int min, max, rank, val;
         int[] rankArray = new int[SIZE];
 
@@ -191,19 +192,19 @@ public class Model implements ModelInterface {
             rankArray[i] = rank;
         }
 
-        int minRank = getMinValueIndexInIntegerArray(rankArray);
+        int[] minRank = getMinValueIndiceInIntegerArray(rankArray);
         return minRank;
     }
 
     // Risk management
     @Override
-    public int nearFutureRiskPredict(){
-        int highestProbability = getMaxValueIndexInDoubleArray(probabilities);
+    public int[] nearFutureRiskPredict(){
+        int[] highestProbability = getMaxValueIndiceInDoubleArray(probabilities);
         return highestProbability;
     }
 
     @Override
-    public int maximumExpectedProfitRiskPredict(){
+    public int[] maximumExpectedProfitRiskPredict(){
         double[] expectInterests = new double[SIZE];
         double expectInterest;
 
@@ -215,12 +216,17 @@ public class Model implements ModelInterface {
             expectInterests[i] = expectInterest;
         }
         
-        int bestOutcome = getMaxValueIndexInDoubleArray(expectInterests);
+        int[] bestOutcome = getMaxValueIndiceInDoubleArray(expectInterests);
         return bestOutcome;
     }
 
     @Override
-    public int minimumExpectedRegretRiskPredict(){
+    public int[] decisionTreePredict() {
+        return maximumExpectedProfitRiskPredict();
+    }
+
+    @Override
+    public int[] minimumExpectedRegretRiskPredict(){
         double[] expectRegrets = new double[SIZE];
         double expectRegret;
 
@@ -232,77 +238,102 @@ public class Model implements ModelInterface {
             expectRegrets[i] = expectRegret;
         }
         
-        int bestOutcome = getMinValueIndexInDoubleArray(expectRegrets);
+        int[] bestOutcome = getMinValueIndiceInDoubleArray(expectRegrets);
         return bestOutcome;
     }
 
     // Certainty theory
-    public int maximumExpectedProfitPredict(){
+    public int[] maximumExpectedProfitPredict(){
         // ???
-        return 0;
+        int[] result = {0};
+        return result;
     }
 
-    private int getMaxValueIndexInDoubleArray(double[] array){
+    private int[] getMaxValueIndiceInDoubleArray(double[] array){
         if (array.length == 0){
             throw new IllegalArgumentException("Do dai mang phai lon hon 0");
         }
 
-        int index = 0;
         double maxValue = array[0];
         for (int i = 1; i < array.length; i++){
             if (array[i] > maxValue){
                 maxValue = array[i];
-                index = i;
             }
         }
 
-        return index;
+        ArrayList<Integer> indiceList = new ArrayList<>();
+        for (int i = 0; i < array.length; i++){
+            if (array[i] == maxValue){
+                indiceList.add(i);
+            }
+        }
+
+        int[] indice = indiceList.stream().mapToInt(Integer::valueOf).toArray();
+        return indice;
     }
 
-    private int getMinValueIndexInDoubleArray(double[] array){
+    private int[] getMinValueIndiceInDoubleArray(double[] array){
         if (array.length == 0){
             throw new IllegalArgumentException("Do dai mang phai lon hon 0");
         }
 
-        int index = 0;
         double minValue = array[0];
         for (int i = 1; i < array.length; i++){
             if (array[i] < minValue){
                 minValue = array[i];
-                index = i;
             }
         }
 
-        return index;
+        ArrayList<Integer> indiceList = new ArrayList<>();
+        for (int i = 0; i < array.length; i++){
+            if (array[i] == minValue){
+                indiceList.add(i);
+            }
+        }
+
+        int[] indice = indiceList.stream().mapToInt(Integer::valueOf).toArray();
+        return indice;
     }
 
 
-    private int getMaxValueIndexInIntegerArray(int[] array){
-        int maxVal = array[0];
-        int index = 0;
+    private int[] getMaxValueIndiceInIntegerArray(int[] array){
+        int maxValue = array[0];
 
         for (int i = 1; i < array.length; i++){
-            if (array[i] > maxVal){
-                maxVal = array[i];
-                index = i;
+            if (array[i] > maxValue){
+                maxValue = array[i];
             }
         }
 
-        return index;
+        ArrayList<Integer> indiceList = new ArrayList<>();
+        for (int i = 0; i < array.length; i++){
+            if (array[i] == maxValue){
+                indiceList.add(i);
+            }
+        }
+
+        int[] indice = indiceList.stream().mapToInt(Integer::valueOf).toArray();
+        return indice;
     }
 
-    private int getMinValueIndexInIntegerArray(int[] array){
-        int minVal = array[0];
-        int index = 0;
+    private int[] getMinValueIndiceInIntegerArray(int[] array){
+        int minValue = array[0];
 
         for (int i = 1; i < array.length; i++){
-            if (array[i] < minVal){
-                minVal = array[i];
-                index = i;
+            if (array[i] < minValue){
+                minValue = array[i];
             }
         }
 
-        return index;
+        ArrayList<Integer> indiceList = new ArrayList<>();
+        for (int i = 0; i < array.length; i++){
+            if (array[i] == minValue){
+                indiceList.add(i);
+            }
+        }
+
+        int[] indice = indiceList.stream().mapToInt(Integer::valueOf).toArray();
+        return indice;
     }
 
     private void printMatrix(int[][] matrix){
