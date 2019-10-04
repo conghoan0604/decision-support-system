@@ -24,9 +24,9 @@ public class ResultPanel extends JDialog {
 			public void run() {
 				try {
 					ResultPanel frame = new ResultPanel();
-					frame.setResult(1, 2, 6);
+					frame.setResult(1, 2, new int[] {1, 2, 3});
 					frame.setVisible(true);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -83,11 +83,22 @@ public class ResultPanel extends JDialog {
 		panel.add(lblResult, gbc_lblResult);
 	}
 	
-	public void setResult(int caseNum, int solutionNum, int result) {
+	public void setResult(int caseNum, int solutionNum, int[] result) {
 		try {
 			lblCasename.setText("Trường hợp: " + caseArr[caseNum-1]);
 			lblSolutionname.setText("Cách giải quyết: " + solutionArr[caseNum-1][solutionNum-1]);
-			lblResult.setText("Người bán hàng sẽ mua về " + N_PRODUCT[result] + " bánh mì");
+			int varSize = result.length;
+			if (varSize == 0) {
+				throw new Exception();
+			}
+			String resultText = N_PRODUCT[result[0]] + "";
+			if (varSize > 1) {
+				for (int i = 1; i < varSize - 1; i++) {
+					resultText += ", " + N_PRODUCT[result[i]];
+				}
+				resultText += " hoặc " + N_PRODUCT[result[varSize-1]];
+			}
+			lblResult.setText("Người bán hàng sẽ mua về " + resultText + " bánh mì");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
