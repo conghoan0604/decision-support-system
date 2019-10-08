@@ -1,15 +1,11 @@
 package controllers;
 
 import models.Model;
-import views.GroupInfoPanel;
 import views.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.io.IOException;
-
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class Controller {
@@ -19,7 +15,7 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
-        this.view.addListenerMainApp(new btnInfoAL(), new btnCase1AL(), new btnCase2AL(), new btnCase3AL(), new btnSubmitAL(), new btnExitAL());
+        this.view.addListenerMainApp(new btnInfoAL(), new btnCase1AL(), new btnCase2AL(), new btnCase3AL(), new btnSubmitAL(), new btnResetAL());
         this.view.addListenerCase1(new btnCase1Solution1AL(), new btnCase1Solution2AL(), new btnCase1Solution3AL(), new btnCase1Solution4AL(), new btnCase1ExitAL());
         this.view.addListenerCase2(new btnCase2Solution1AL(), new btnCase2Solution2AL(), new btnCase2Solution3AL(), new btnCase2Solution4AL(), new btnCase2ExitAL());
         this.view.addListenerCase3(new btnCase3Solution1AL(), new btnCase3ExitAL());
@@ -120,10 +116,11 @@ public class Controller {
         }
     }
     
-    public class btnExitAL implements ActionListener {
+    public class btnResetAL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-        	System.exit(0);
+        	view.setEnableCaseBtn(0, false);
+        	view.resetDefault();
         }
     }
 
@@ -186,7 +183,7 @@ public class Controller {
     public class btnCase2Solution3AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.setResult(2, 3, model.maximumExpectedProfitRiskPredict());
+            view.setResult(2, 3, model.decisionTreePredict());
             view.showResultWindow();
         }
     }

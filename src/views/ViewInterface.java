@@ -23,6 +23,9 @@ public interface ViewInterface {
 	int getLossPrice();
 	double[] getProbability();
 	
+	// Reset value
+	void resetDefault();
+	
 	// Set result
 	void setResult(int caseNum, int solutionNum, int result);
 	
