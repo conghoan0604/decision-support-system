@@ -89,7 +89,7 @@ public class Case_1 extends JDialog {
 		gbc_label_margin_3.gridx = 0;
 		gbc_label_margin_3.gridy = 2;
 		main.add(label_margin_3, gbc_label_margin_3);
-		btnCase1_solution3 = new JButton("Chỉ tiêu Savart");
+		btnCase1_solution3 = new JButton("Chỉ tiêu Savage");
 		GridBagConstraints gbc_btnCase1_solution3 = new GridBagConstraints();
 		gbc_btnCase1_solution3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCase1_solution3.insets = new Insets(0, 0, 5, 5);
