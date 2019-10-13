@@ -39,8 +39,9 @@ public class ResultPanel extends JDialog {
 	 */
 	public ResultPanel() {
 		setTitle(name);
-		setSize(450, 200);
+		setSize(450, 185);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
