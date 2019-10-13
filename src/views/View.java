@@ -402,7 +402,7 @@ public class View extends JFrame {
 		frame_3.addListenerCase3(solution1Btn, exitBtn);
 	}
 	
-	public static void changeFont(Component component, int fontSize, boolean fixStyle, int style) {
+	private static void changeFont(Component component, int fontSize, boolean fixStyle, int style) {
 	    Font f = component.getFont();
 	    int styleSet = f.getStyle();
 	    if (fixStyle) {
