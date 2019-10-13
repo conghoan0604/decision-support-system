@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 public class View extends JFrame {
 	
@@ -18,7 +19,7 @@ public class View extends JFrame {
 	private GroupInfoPanel info_frame = new GroupInfoPanel();
 	private ResultPanel result_frame = new ResultPanel();
 	
-	private JPanel infoPane, formPane, casePane;
+	private JPanel infoPane, formPane, footer;
 	
 	private JButton btnInfoGroup;
 	
@@ -36,7 +37,11 @@ public class View extends JFrame {
 	private JPanel button;
 	private JButton btnReset, btnSubmit;
 	
+	private JPanel casePane, exitPane;
+	
 	private JButton btnCase1, btnCase2, btnCase3;
+	private JLabel lblMargin1, lblMargin2;
+	private JButton btnExit;
 
 	private KeyAdapter numberInput = new KeyAdapter() {
 		public void keyTyped(KeyEvent e) {
@@ -105,7 +110,7 @@ public class View extends JFrame {
 	 */
 	public View() {
 		setTitle(name);
-		setSize(550, 330);
+		setSize(600, 388);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,6 +127,7 @@ public class View extends JFrame {
 		
 		formPane = new JPanel();
 		formPane.setBorder(BorderFactory.createTitledBorder("Dữ liệu bài toán"));
+		formPane.setBorder(BorderFactory.createTitledBorder(null, "Dữ liệu bài toán", TitledBorder.LEADING, TitledBorder.TOP, new Font("Tahoma",Font.PLAIN,16)));
 		contentPane.add(formPane, BorderLayout.CENTER);
 		formPane.setLayout(new BorderLayout(0, 0));
 		
@@ -201,17 +207,72 @@ public class View extends JFrame {
 		btnSubmit = new JButton("Submit");
 		button.add(btnSubmit);
 		
+		footer = new JPanel();
+		contentPane.add(footer, BorderLayout.SOUTH);
+		footer.setLayout(new BorderLayout(0, 0));
+		
 		casePane = new JPanel();
-		contentPane.add(casePane, BorderLayout.SOUTH);
-		//casePane.setLayout(new GridLayout(0, 3, 10, 0));
-		casePane.setLayout(new GridLayout(0, 2, 10, 0));
-		btnCase1 = new JButton("<html><center>"+"Ra quyết định"+"<br>"+"theo không chắc chắn"+"</center></html>");
-		casePane.add(btnCase1);
-		btnCase2 = new JButton("<html><center>"+"Ra quyết định"+"<br>"+"với rủi ro"+"</center></html>");
-		casePane.add(btnCase2);
+		footer.add(casePane, BorderLayout.CENTER);
+		GridBagLayout gbl_casePane = new GridBagLayout();
+		gbl_casePane.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_casePane.rowHeights = new int[]{0, 0, 0};
+		gbl_casePane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_casePane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		casePane.setLayout(gbl_casePane);
+		
+		lblMargin1 = new JLabel(">");
+		GridBagConstraints gbc_lblMargin1 = new GridBagConstraints();
+		gbc_lblMargin1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMargin1.gridx = 0;
+		gbc_lblMargin1.gridy = 0;
+		casePane.add(lblMargin1, gbc_lblMargin1);
+		btnCase1 = new JButton("Ra quyết định theo không chắc chắn");
+		GridBagConstraints gbc_btnCase1 = new GridBagConstraints();
+		gbc_btnCase1.insets = new Insets(0, 0, 5, 0);
+		gbc_btnCase1.fill = GridBagConstraints.BOTH;
+		gbc_btnCase1.gridx = 1;
+		gbc_btnCase1.gridy = 0;
+		casePane.add(btnCase1, gbc_btnCase1);
+		
+		lblMargin2 = new JLabel(">");
+		GridBagConstraints gbc_lblMargin2 = new GridBagConstraints();
+		gbc_lblMargin2.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMargin2.gridx = 0;
+		gbc_lblMargin2.gridy = 1;
+		casePane.add(lblMargin2, gbc_lblMargin2);
+		btnCase2 = new JButton("Ra quyết định với rủi ro");
+		GridBagConstraints gbc_btnCase2 = new GridBagConstraints();
+		gbc_btnCase2.fill = GridBagConstraints.BOTH;
+		gbc_btnCase2.gridx = 1;
+		gbc_btnCase2.gridy = 1;
+		casePane.add(btnCase2, gbc_btnCase2);
+		
 		btnCase3 = new JButton("<html><center>"+"Ra quyết định"+"<br>"+"theo chắc chắn"+"</center></html>");
 		//casePane.add(btnCase3);
+		
+		exitPane = new JPanel();
+		footer.add(exitPane, BorderLayout.EAST);
+		GridBagLayout gbl_exitPane = new GridBagLayout();
+		gbl_exitPane.columnWidths = new int[]{51, 0};
+		gbl_exitPane.rowHeights = new int[]{23, 0};
+		gbl_exitPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_exitPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		exitPane.setLayout(gbl_exitPane);
+		
+		btnExit = new JButton("Exit");
+		GridBagConstraints gbc_btnExit = new GridBagConstraints();
+		gbc_btnExit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnExit.anchor = GridBagConstraints.SOUTH;
+		gbc_btnExit.gridx = 0;
+		gbc_btnExit.gridy = 0;
+		exitPane.add(btnExit, gbc_btnExit);
+		
 		setEnableCaseBtn(0, false);
+		
+		changeFont(contentPane, 15, false, Font.PLAIN);
+		changeFont(frame_1.getContentPane(), 15, false, Font.PLAIN);
+		changeFont(frame_2.getContentPane(), 15, false, Font.PLAIN);
+		changeFont(result_frame.getContentPane(), 16, true, Font.PLAIN);
 	}
 	
 	public int getOriginalPrice() {
@@ -311,7 +372,7 @@ public class View extends JFrame {
 		}
 	}
 	
-	public void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener submitBtn, ActionListener resetBtn) {
+	public void addListenerMainApp(ActionListener groupInfoBtn, ActionListener case1Btn, ActionListener case2Btn, ActionListener case3Btn, ActionListener submitBtn, ActionListener resetBtn, ActionListener exitBtn) {
 		btnInfoGroup.addActionListener(groupInfoBtn);
 
 		btnCase1.addActionListener(case1Btn);
@@ -321,6 +382,8 @@ public class View extends JFrame {
 		btnSubmit.addActionListener(submitBtn);
 
 		btnReset.addActionListener(resetBtn);
+		
+		btnExit.addActionListener(exitBtn);
 	}
 	
 	public void addListenerGroupInfoPanel(ActionListener exitBtn) {
@@ -337,6 +400,20 @@ public class View extends JFrame {
 	
 	public void addListenerCase3(ActionListener solution1Btn, ActionListener exitBtn) {
 		frame_3.addListenerCase3(solution1Btn, exitBtn);
+	}
+	
+	private static void changeFont(Component component, int fontSize, boolean fixStyle, int style) {
+	    Font f = component.getFont();
+	    int styleSet = f.getStyle();
+	    if (fixStyle) {
+	    	styleSet = style;
+	    }
+	    component.setFont(new Font(f.getName(),styleSet,fontSize));
+	    if (component instanceof Container) {
+	        for (Component child : ((Container) component).getComponents()) {
+	            changeFont(child, fontSize, fixStyle, style);
+	        }
+	    }
 	}
 
 }

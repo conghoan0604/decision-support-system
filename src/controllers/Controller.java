@@ -15,7 +15,7 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
-        this.view.addListenerMainApp(new btnInfoAL(), new btnCase1AL(), new btnCase2AL(), new btnCase3AL(), new btnSubmitAL(), new btnResetAL());
+        this.view.addListenerMainApp(new btnInfoAL(), new btnCase1AL(), new btnCase2AL(), new btnCase3AL(), new btnSubmitAL(), new btnResetAL(), new btnExitAL());
         this.view.addListenerCase1(new btnCase1Solution1AL(), new btnCase1Solution2AL(), new btnCase1Solution3AL(), new btnCase1Solution4AL(), new btnCase1ExitAL());
         this.view.addListenerCase2(new btnCase2Solution1AL(), new btnCase2Solution2AL(), new btnCase2Solution3AL(), new btnCase2Solution4AL(), new btnCase2ExitAL());
         this.view.addListenerCase3(new btnCase3Solution1AL(), new btnCase3ExitAL());
@@ -79,6 +79,7 @@ public class Controller {
     public class btnCase1AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	view.closeResultWindow();
             view.showCase1Window(true);
         }
     }
@@ -86,6 +87,7 @@ public class Controller {
     public class btnCase2AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	view.closeResultWindow();
             view.showCase2Window(true);
         }
     }
@@ -93,6 +95,7 @@ public class Controller {
     public class btnCase3AL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	view.closeResultWindow();
             view.showCase3Window(true);
         }
     }
@@ -119,8 +122,17 @@ public class Controller {
     public class btnResetAL implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+        	view.hideAllCaseWindow();
+        	view.closeResultWindow();
         	view.setEnableCaseBtn(0, false);
         	view.resetDefault();
+        }
+    }
+    
+    public class btnExitAL implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.exit(0);
         }
     }
 
