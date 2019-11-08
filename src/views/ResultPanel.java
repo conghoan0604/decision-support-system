@@ -93,14 +93,14 @@ public class ResultPanel extends JDialog {
 			if (varSize == 0) {
 				throw new Exception();
 			}
-			String resultText = N_PRODUCT[result[0]] + "";
+			String resultText = "<span style='background-color: white; font-size: 12px;'>&nbsp;" + N_PRODUCT[result[0]] + "&nbsp;</span>";
 			if (varSize > 1) {
 				for (int i = 1; i < varSize - 1; i++) {
-					resultText += ", " + N_PRODUCT[result[i]];
+					resultText += ", <span style='background-color: white; font-size: 12px;'>&nbsp;" + N_PRODUCT[result[i]] + "&nbsp;</span>";
 				}
-				resultText += " hoặc " + N_PRODUCT[result[varSize-1]];
+				resultText += " hoặc <span style='background-color: white; font-size: 12px;'>&nbsp;" + N_PRODUCT[result[varSize-1]] + "&nbsp;</span>";
 			}
-			lblResult.setText("Người bán hàng sẽ mua về " + resultText + " bánh mì");
+			lblResult.setText("<html>Người bán hàng sẽ mua về " + resultText + " bánh mì</html>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
