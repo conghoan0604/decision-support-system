@@ -39,7 +39,7 @@ public class ResultPanel extends JDialog {
 	 */
 	public ResultPanel() {
 		setTitle(name);
-		setSize(450, 185);
+		setSize(480, 185);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
