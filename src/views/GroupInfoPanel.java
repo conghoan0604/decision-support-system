@@ -2,11 +2,7 @@ package views;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -39,19 +35,18 @@ public class GroupInfoPanel extends JDialog {
 	}
 	
 	private static JLabel pictureLabel(String dir) {
-		BufferedImage picture = null;
+		JLabel picLabel = null;
 		try {
-			picture = ImageIO.read(new File(dir));
-		} catch (IOException e) {
+			picLabel = new JLabel(new ImageIcon(GroupInfoPanel.class.getResource(dir)));
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			try {
-				picture = ImageIO.read(new File("images/noavatar.jpg"));
-			} catch (IOException e1) {
+				picLabel = new JLabel(new ImageIcon(GroupInfoPanel.class.getResource("noavatar.jpg")));
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
-		JLabel picLabel = new JLabel(new ImageIcon(picture));
 		return picLabel;
 	}
 
@@ -77,7 +72,7 @@ public class GroupInfoPanel extends JDialog {
 		panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 5));
-		picQuang = pictureLabel("images/quang.jpg");
+		picQuang = pictureLabel("quang.jpg");
 		panel_1.add(picQuang, BorderLayout.CENTER);
 		lblname_1 = new JLabel("Đặng Nhật Quang");
 		lblname_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -86,7 +81,7 @@ public class GroupInfoPanel extends JDialog {
 		panel_2 = new JPanel();
 		panel.add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 5));
-		picDung = pictureLabel("images/dung.jpg");
+		picDung = pictureLabel("dung.jpg");
 		panel_2.add(picDung, BorderLayout.CENTER);
 		lblname_2 = new JLabel("Huỳnh Minh Dũng");
 		lblname_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -95,7 +90,7 @@ public class GroupInfoPanel extends JDialog {
 		panel_3 = new JPanel();
 		panel.add(panel_3);
 		panel_3.setLayout(new BorderLayout(0, 5));
-		picHoan = pictureLabel("images/hoan.jpg");
+		picHoan = pictureLabel("hoan.jpg");
 		panel_3.add(picHoan, BorderLayout.CENTER);
 		lblname_3 = new JLabel("Ngô Công Hoan");
 		lblname_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -104,7 +99,7 @@ public class GroupInfoPanel extends JDialog {
 		panel_4 = new JPanel();
 		panel.add(panel_4);
 		panel_4.setLayout(new BorderLayout(0, 5));
-		picMinh = pictureLabel("images/minh.jpg");
+		picMinh = pictureLabel("minh.jpg");
 		panel_4.add(picMinh, BorderLayout.CENTER);
 		lblname_4 = new JLabel("Nguyễn Thọ Công Minh");
 		lblname_4.setHorizontalAlignment(SwingConstants.CENTER);
